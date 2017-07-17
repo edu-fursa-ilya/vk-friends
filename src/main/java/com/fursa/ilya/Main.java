@@ -1,6 +1,5 @@
 package com.fursa.ilya;
 
-import com.fursa.ilya.db.DatabaseConnection;
 import com.fursa.ilya.http.HttpRequest;
 import com.fursa.ilya.pojo.Friend;
 import org.json.JSONException;
@@ -18,10 +17,7 @@ public class Main {
     //    int uid = sc.nextInt();
 
         HttpRequest request = new HttpRequest();
-        List<Friend> response = request.parse(2);
-        for (int i = 0; i < response.size(); i++) {
-            System.out.println(response.get(i).toString() + "\n");
-        }
+        List<Friend> response = request.parseFriends(2);
 
     }
 }

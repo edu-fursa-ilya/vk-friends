@@ -12,12 +12,11 @@ public class DatabaseQueries implements DatabaseWorker {
     @Override
     public void addFriend(Friend friend) throws SQLException, ClassNotFoundException {
         Connection connection = DatabaseConnection.getInstance();
-        System.out.println("INSERT INTO Users.User(uid, firs_name, last_name, sex) " +
-                "VALUES(" + friend.getUid() + ", '" + friend.getFirstName() + "','"
-                + friend.getLastName() + "'," + friend.getSex() +");");
+        System.out.println("INSERT INTO Users.Friend(uid, first_name, last_name, sex, owner_id) " +
+                "VALUES(" + friend.getUid() + ", '" + friend.getFirstName() + "','" + friend.getLastName() + "'," + friend.getSex() +"," + friend.getOwnerId() +");");
         statement = connection.createStatement();
-        statement.executeUpdate("INSERT INTO Users.User(uid, firs_name, last_name, sex) " +
-                "VALUES(" + friend.getUid() + ", '" + friend.getFirstName() + "','" + friend.getLastName() + "'," + friend.getSex() +");");
+        statement.executeUpdate("INSERT INTO Users.Friend(uid, first_name, last_name, sex, owner_id) " +
+                "VALUES(" + friend.getUid() + ", '" + friend.getFirstName() + "','" + friend.getLastName() + "'," + friend.getSex() +"," + friend.getOwnerId() +");");
 
     }
 

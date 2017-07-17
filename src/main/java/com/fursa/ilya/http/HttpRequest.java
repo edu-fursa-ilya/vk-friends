@@ -29,16 +29,16 @@ public class HttpRequest {
         return answer;
     }
 
-    public List<Friend> parse(int uid) throws IOException, JSONException, SQLException, ClassNotFoundException {
+    public List<Friend> parseFriends(int uid) throws IOException, JSONException, SQLException, ClassNotFoundException {
         List<Friend> friends = new ArrayList<>();
         String json = getJSON(uid);
         JSONObject jsonObject = new JSONObject(json);
-        parseItems(friends, jsonObject);
+        parse(uid, friends, jsonObject);
 
         return friends;
     }
 
-    private void parseItems(List<Friend> friends, JSONObject jsonObject) throws JSONException, SQLException, ClassNotFoundException {
+    private void parse(int uid, List<Friend> friends, JSONObject jsonObject) throws JSONException, SQLException, ClassNotFoundException {
         databaseQueries = new DatabaseQueries();
 
         JSONObject obj = jsonObject.getJSONObject("response");
@@ -51,6 +51,7 @@ public class HttpRequest {
             item.setFirstName(object.getString("first_name"));
             item.setLastName(object.getString("last_name"));
             item.setSex(object.getInt("sex"));
+            item.setOwnerId(uid);
             databaseQueries.addFriend(item);
             friends.add(item);
         }

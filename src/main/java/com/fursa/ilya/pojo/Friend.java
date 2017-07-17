@@ -1,12 +1,14 @@
 package com.fursa.ilya.pojo;
 
 public class Friend {
+    private int ownerId;
     private int uid;
     private String firstName;
     private String lastName;
     private int sex;
 
-    public Friend(int uid, String firstName, String lastName, int sex) {
+    public Friend(int ownerId, int uid, String firstName, String lastName, int sex) {
+        this.ownerId = ownerId;
         this.uid = uid;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -49,10 +51,19 @@ public class Friend {
         this.sex = sex;
     }
 
+    public int getOwnerId() {
+        return ownerId;
+    }
+
+    public void setOwnerId(int ownerId) {
+        this.ownerId = ownerId;
+    }
+
     @Override
     public String toString() {
         return "Friend{" +
-                "uid=" + uid +
+                "ownerId=" + ownerId +
+                ", uid=" + uid +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", sex=" + sex +
