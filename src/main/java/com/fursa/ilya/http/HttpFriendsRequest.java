@@ -14,7 +14,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HttpRequest {
+public class HttpFriendsRequest {
     private String request = "https://api.vk.com/method/friends.get?user_id=";
     private String fields = "&fields=sex&v=5.52";
     private DatabaseQueries databaseQueries;
@@ -48,14 +48,18 @@ public class HttpRequest {
             JSONObject object = jsonArray.getJSONObject(i);
             Friend item = new Friend();
             item.setUid(object.getInt("id"));
-            item.setFirstName(object.getString("first_name"));
-            item.setLastName(object.getString("last_name"));
+            item.setFirstName(object.getString("first_name").replaceAll("'",""));
+            item.setLastName(object.getString("last_name").replaceAll("'",""));
             item.setSex(object.getInt("sex"));
             item.setOwnerId(uid);
             databaseQueries.addFriend(item);
             friends.add(item);
         }
     }
+
+
+
+
 
 
 }
